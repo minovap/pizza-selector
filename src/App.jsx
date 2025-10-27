@@ -6,21 +6,21 @@ function App() {
 
   // Top 20 ingredients - edit this array to change order and content
   const topIngredients = [
+    'salami',
+    'lök',
     'oxfile',
     'kebab',
     'skinka',
     'tonfisk',
     'rakat',
     'champinjoner',
-    'lök',
     'ananas',
     'paprika',
-    'paprika',
+    'oliver',
     'pepperoni',
     'musslor',
     'bacon',
     'kottfars',
-    'salami'
   ]
 
   // Filter pizzas based on selected ingredients
