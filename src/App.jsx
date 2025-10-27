@@ -1,38 +1,29 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { INGREDIENTS, PIZZAS } from './data/pizzaData'
 
 function App() {
   const [selectedIngredients, setSelectedIngredients] = useState([])
 
-  // Get top 20 most common ingredients (excluding tomato sauce and cheese)
-  const topIngredients = useMemo(() => {
-    const ingredientCounts = {}
-    
-    PIZZAS.forEach(pizza => {
-      pizza.ingredients.forEach(ing => {
-        // Exclude base ingredients that are on almost all pizzas
-        if (ing !== 'tomat_sas' && ing !== 'ost') {
-          ingredientCounts[ing] = (ingredientCounts[ing] || 0) + 1
-        }
-      })
-    })
-    
-    return Object.entries(ingredientCounts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 20)
-      .map(([key]) => key)
-  }, [])
+  // Top 20 ingredients - edit this array to change order and content
+  const topIngredients = [
+    'oxfile',
+    'skinka',
+    'tonfisk',
+    'rakat',
+    'champinjoner',
+    'lök',
+    'ananas',
+    'paprika',
+    'bacon',
+    'salami'
+  ]
 
   // Filter pizzas based on selected ingredients
-  const filteredPizzas = useMemo(() => {
-    if (selectedIngredients.length === 0) {
-      return PIZZAS
-    }
-    
-    return PIZZAS.filter(pizza =>
-      selectedIngredients.every(ing => pizza.ingredients.includes(ing))
-    )
-  }, [selectedIngredients])
+  const filteredPizzas = selectedIngredients.length === 0
+    ? PIZZAS
+    : PIZZAS.filter(pizza =>
+        selectedIngredients.every(ing => pizza.ingredients.includes(ing))
+      )
 
   const toggleIngredient = (ingredient) => {
     setSelectedIngredients(prev =>
